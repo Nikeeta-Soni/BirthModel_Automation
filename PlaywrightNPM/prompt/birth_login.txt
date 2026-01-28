@@ -1,0 +1,7 @@
+Navigates to https://physician.stage.birthmodel.com/
+Clicks the "Login with Hospital Creds" button
+Fills the email field with daisy1010@testdirectory007.onmicrosoft.com
+Clicks the Next button
+Fills the password field with Azure@123
+Clicks the Next button again
+Click on Yes button

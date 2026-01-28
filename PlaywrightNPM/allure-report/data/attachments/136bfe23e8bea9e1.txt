@@ -1,0 +1,43 @@
+✅ Navigated to superadmin URL
+✅ Clicked Login button
+✅ Email entered: nikeetasoni151@gmail.com
+✅ Clicked Continue button
+✅ Clicked Next on email confirmation
+✅ Password entered via JavaScript
+✅ Login completed successfully
+📍 Current URL: https://accounts.google.com/v3/signin/rejected?app_domain=https%3A%2F%2Fbm-super-admin-dev-qa-stage.us.auth0.com&client_id=324459542846-7bokhjpq4u6djse967t9ipcqct9rcqal.apps.googleusercontent.com&continue=https%3A%2F%2Faccounts.google.com%2Fsignin%2Foauth%2Fconsent%3Fauthuser%3Dunknown%26part%3DAJi8hAMLCD2cPB_ZPoNjD_aeWJPu_Z4wtrbTEtX5MkVKFjV-2eYPQt2tlwAYCrdFpMVoYM13HXWC01xEoOXSvoDt59ZJ6_lJKeF9Kg0VZWfVIPWjUTlnwVcixHTfDswlIBm6U_L-Ai7kTxTW8wS3x5q51cHtm4Elt1ReW7rVFjYJhXU5J99RUvwI_HgkrVxu4JIazFiM-Evq3SnSsOMUgjwyPbyDN84G646yXmd-gCTeAaxVI0CaHrJS1Q-6oqAttIFRTygWDTS1dYjOZEqP_MeQ0d8ZNyf9KTty1VINuznvqMDzVUuZSWg88u54mvSP5sR7TPXiLSlZ-vYSF6p16ve9MA8yTZOqbBETiLnpt6aPV3Slph6_sHnRWJO_lGUXxEyuXc7YUg2GBacYLewz7z9W6aQTCaiSFoZYBv5y5H9p8-iWWLqPL4AV0oPsRlYvTRrdSyuwnBLGmgy9Dz0LjC4bE9-F9h-tnWLlGXkUbExUJkLY8Ay1EEUff7qWCApN7ngDXpdubr5U%26flowName%3DGeneralOAuthFlow%26as%3DS-717837326%253A1768912979427166%26client_id%3D324459542846-7bokhjpq4u6djse967t9ipcqct9rcqal.apps.googleusercontent.com%26requestPath%3D%252Fsignin%252Foauth%252Fconsent%23&dsh=S-717837326%3A1768912979427166&epd=AX1IGxsKciT13k8JK0wHfGc34PWxTuo7LidZRGElapEgBzjvNbnr3aiJpQ&flowName=GeneralOAuthFlow&hd=mindbowser.com&idnf=nikeetasoni151%40gmail.com&login_hint=nikeetasoni151%40gmail.com&o2v=1&opparams=%253Fhd%253Dmindbowser.com&prompt=login&rart=ANgoxcfddu_bwJYku4fveK23lDgEOVfNy-fVA6uGGLftknuAVdELI-fhHiBnDdEoi8h9n8JS0QDGdvQbQUZRKt21KAq4pce-TCV_I_S-yoAObxYg_emHzuo&redirect_uri=https%3A%2F%2Fbm-super-admin-dev-qa-stage.us.auth0.com%2Flogin%2Fcallback&response_type=code&rhlk=le&rrk=46&scope=email%20profile&service=lso&state=QY5CZKTiK4bfswXtfj5Ad7c28kl9su8R
+📍 Page title: Couldn’t sign you in
+📍 Found 0 tab elements
+ℹ️ Hospital tab not found, continuing
+⚠️ Add New Hospital button not found
+⚠️ Epic hospital option not found
+
+📋 Filling Hospital Details Section...
+⚠️ Hospital Name field not found
+⚠️ Address Line 1 field not found
+⚠️ State dropdown not found
+⏳ Waiting for City dropdown to populate...
+⚠️ City dropdown not found
+⚠️ Zip Code field not found
+⚠️ Azure Tenant ID field not found
+⚠️ Base URL field not found
+
+👤 Filling Admin 1 Section...
+⚠️ Admin First Name field not found
+⚠️ Admin Last Name field not found
+⚠️ Azure Admin UPN field not found
+⚠️ Azure Admin Object ID field not found
+⚠️ Title dropdown not found
+
+👥 Adding Admin 2 Section...
+⚠️ Add Azure Hospital Admins button not found
+⚠️ Admin 2 First Name field not found
+⚠️ Admin 2 Last Name field not found
+⚠️ Admin 2 Azure Admin UPN field not found
+⚠️ Admin 2 Azure Admin Object ID field not found
+⚠️ Admin 2 Title dropdown not found
+
+✉️ Submitting the form...
+⚠️ Invite & Next button not found
+
+✅ Add Hospital Form - Complete Flow test completed!

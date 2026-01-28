@@ -1,0 +1,10 @@
+✅ Navigated to the Birth Model URL
+✅ Clicked on "Login with Hospital Credentials" button
+✅ Email entered: daisy1010@testdirectory007.onmicrosoft.com
+✅ Clicked Next button after email entry
+✅ Password entered: Azure@123
+✅ Clicked Sign in button after password entry
+ℹ️ No "Stay signed in" prompt appeared
+ℹ️ Still waiting for redirect to application...
+✅ Login process completed
+📍 Current URL: https://login.microsoftonline.com/common/oauth2/v2.0/authorize?prompt=login&response_type=code&client_id=dc1d726f-3b2b-4843-b28b-bf824e08b3ae&redirect_uri=https%3A%2F%2Fbm-physician-dev-qa-stag.us.auth0.com%2Flogin%2Fcallback&nonce=d6Tj%2Ft4UTZ7w1jlxOTE9&scope=openid%20profile%20email%20https%3A%2F%2Fgraph.microsoft.com%2FUser.Read&state=xcC0uxwptTlzuA9TN0xezbfOeN6YvLPd&sso_reload=true

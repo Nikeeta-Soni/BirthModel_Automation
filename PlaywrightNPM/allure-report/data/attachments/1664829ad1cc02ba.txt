@@ -1,0 +1,3 @@
+✅ Navigated to superadmin URL
+✅ Clicked on the Login button
+ℹ️ No welcome popup found

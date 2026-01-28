@@ -1,0 +1,12 @@
+✅ Navigated to the Birth Model URL
+✅ Clicked on "Login with Hospital Credentials" button
+✅ Email entered: daisy1010@testdirectory007.onmicrosoft.com
+✅ Clicked Next button after email entry
+✅ Password entered: Azure@123
+✅ Clicked Sign in button after password entry
+ℹ️ No "Stay signed in" prompt appeared
+✅ Login process completed
+📍 Current URL: https://physician.stage.birthmodel.com/dashboard
+✅ Assertion passed: Successfully redirected to Birth Model application
+📸 Screenshot saved to: screenshots/post-login.png
+⏸️ Pausing for manual exploration. Press "Resume" in the browser inspector to continue...

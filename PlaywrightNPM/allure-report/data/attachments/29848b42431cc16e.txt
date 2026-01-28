@@ -1,0 +1,8 @@
+✅ Navigated to superadmin URL
+✅ Clicked on the Login button
+✅ Email entered: nikeetasoni151@gmail.com
+✅ Clicked on the Continue button
+✅ Clicked Next button on email confirmation
+⏳ Waiting for password field...
+⚠️ Password field not found with standard selectors, trying generic approach
+✅ Password entered via JavaScript

@@ -1,0 +1,16 @@
+✅ Navigated to superadmin URL
+✅ Clicked on the Login button
+✅ Email entered: nikeetasoni151@gmail.com
+✅ Clicked on the Continue button
+✅ Clicked Next button on email confirmation
+⏳ Waiting for password field...
+⚠️ Password field not found with standard selectors, trying generic approach
+✅ Password entered via JavaScript
+⚠️ Next button after password not found
+📍 Current URL: https://accounts.google.com/v3/signin/rejected?app_domain=https%3A%2F%2Fbm-super-admin-dev-qa-stage.us.auth0.com&client_id=324459542846-7bokhjpq4u6djse967t9ipcqct9rcqal.apps.googleusercontent.com&continue=https%3A%2F%2Faccounts.google.com%2Fsignin%2Foauth%2Fconsent%3Fauthuser%3Dunknown%26part%3DAJi8hAONNyvSoQrJPfNpqe0uPmvYt7Qu0ZuZPRfTGg2TKf3WuPRTiSU7LU6q8asLs3MzqI1kEEuksMIejcAK6Lfr3UMRaEvYXx-Oh_eVaaOBN4p4EH37E-4d6mRXtt5mA4IVUD6huJTG8Ik_el1RBYc2JWmsHbEQLgGi--M_VcanbA-W3vEs2MExbuMbqZaEj6-rYSrnETx0qBci__n8o796Ud8Uw2puEeNKzYujsHnTLRRK8PDV0YG9oG7YMvmLeh4OXs4fFY66yXxfvjRGpbXs2Rq-ib6W0Gt-P7uQ1rIxoUNkMFgMHJCwPWXZyPaOA5AHu-GxSYogH25gH6vb4bAh5i8bNJrg9G541M9FhTOfZ1bLpqbxMDjJGS6cFZWKejbYyG9tE-D9Q6_yegZRMwhRb86SIE0EyD97fKz0b8W-Q-_4mR4DtPlp18Ixe_5VdTAm-rNultwireoAf0vyc5r6cJ06B-JmMwljgneBgHZfpNIUwPdlCuzlEo-fhN2LhpQXrewHRXzw%26flowName%3DGeneralOAuthFlow%26as%3DS3762547%253A1768913220976533%26client_id%3D324459542846-7bokhjpq4u6djse967t9ipcqct9rcqal.apps.googleusercontent.com%26requestPath%3D%252Fsignin%252Foauth%252Fconsent%23&dsh=S3762547%3A1768913220976533&epd=AX1IGxuVKJ09gi11T_kqkRWuztYMramBnYwCZuchG4DaewEBPCDv9deojg&flowName=GeneralOAuthFlow&hd=mindbowser.com&idnf=nikeetasoni151%40gmail.com&login_hint=nikeetasoni151%40gmail.com&o2v=1&opparams=%253Fhd%253Dmindbowser.com&prompt=login&rart=ANgoxccJiwLuynYEsx9LHyjX9sijruhhTkPUkQHOZ70iExKOMxWcJyX2s_vAwoog-ZnXsaBzZ3dsVJT0gbOEueEeUj-eQuPuBb4tviH2N1_l-3Hz6jIwWqg&redirect_uri=https%3A%2F%2Fbm-super-admin-dev-qa-stage.us.auth0.com%2Flogin%2Fcallback&response_type=code&rhlk=le&rrk=46&scope=email%20profile&service=lso&state=DiM4Zv-Bu4mIQE_SrjOnH53TrzTAX-z9
+ℹ️ Login flow in progress
+⏳ Waiting for page to fully load and OAuth redirect to complete...
+📍 Page title: Couldn’t sign you in
+⚠️ Hospital tab NOT found
+📍 Found 0 button/tab elements
+✅ Page check completed

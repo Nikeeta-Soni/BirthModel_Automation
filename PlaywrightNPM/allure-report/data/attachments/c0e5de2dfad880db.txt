@@ -1,0 +1,4 @@
+✅ Navigated to superadmin URL
+✅ Clicked on the Login button
+✅ Email entered: nikeetasoni151@gmail.com
+✅ Clicked on the Continue button

@@ -1,0 +1,4 @@
+
+Running 30 tests using 1 worker
+
+[1A[2K[1/30] [chromium] › tests/AddHospitalNegativeCases.spec.js:94:3 › Add Hospital - Negative and Edge Cases › NEG-001: Hospital Name required - empty submission

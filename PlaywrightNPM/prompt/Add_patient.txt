@@ -1,0 +1,55 @@
+Steps
+
+Login
+Open the Physician Portal login page
+Log in using credentials from birth_login.txt
+Wait until the dashboard is fully loaded and visible
+
+Hospital Selection
+Locate the Hospital dropdown at the top of the dashboard, positioned near the Last Login text
+Click on the Hospital dropdown
+From the list, select Non Epic hospital (exact text match) if not already in place
+Wait for the page to refresh and confirm the selected hospital is displayed
+Locate the main navigation bar
+Click on the Active Patients tab
+Wait until the Active Patients listing page loads completely
+
+Initiate Add Patient
+On the Active Patients page, locate and click the Add New Patient button
+Wait until the Add Patient form is fully rendered
+
+Validate Mandatory Fields
+Identify all mandatory fields on the Add Patient form (these fields will have a red asterisk)
+Confirm that each mandatory field is present and enabled before entering data
+Enter Patients First name in the First name field any random american name
+Enter Patients last name in the last name field any random american name
+In the date for birth field add any random date from the calendar
+In the MRN filed add any random digits
+In the Date & Time of First Examination on Labor and Delivery field select current date and time
+Select the dilation as 3
+Ensure correct handling of:
+Dropdown fields (wait for options to load before selection)
+Date pickers (select valid dates, no manual typing if restricted)
+Numeric and text fields (adhere to field validation rules)
+
+Dropdown Selections
+Click on the effacement drodpown and select the first option from the listing
+Select the Fetal station as -1
+Click on the consistency of the cervix dropdown and select firm
+Click on the position dropdown and select the second option from thr listing
+Enter the BMI as 23
+Click on the races dropdown and select the third option from the listing
+Select the Prior Deliveried as 1
+On the Pregnancy dating clcik on the Estimated due date option and select the date as 30 january 2026
+Select the option No for Trail of Labor after Cesarean Delivery
+Click on the Assign Practice dropdown and select the first option from the listing
+Now go to the Assign Provider dropdown and select daisy from the listing
+Noe click on the Add button at the bottom 
+Click on the Add button
+Wait for the submission to complete without validation errors
+Handle Post-Submission Popup
+Verify that the Delivery Prediction popup appears
+Close the popup using the appropriate close action (button or icon)
+Confirm that the popup is no longer visible
+
+
