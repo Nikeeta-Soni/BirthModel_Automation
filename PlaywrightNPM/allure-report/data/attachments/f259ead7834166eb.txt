@@ -1,5 +1,0 @@
-✅ Navigated to superadmin URL
-✅ Clicked on the Login button
-✅ Email entered: nikeeta.soni@mindbowser.com
-✅ Clicked on the Continue button
-✅ Clicked Next button on email confirmation

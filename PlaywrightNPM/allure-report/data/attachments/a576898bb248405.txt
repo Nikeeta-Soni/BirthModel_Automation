@@ -1,3 +1,0 @@
-✅ Navigated to superadmin URL
-✅ Clicked on the Login button
-✅ Welcome heading detected

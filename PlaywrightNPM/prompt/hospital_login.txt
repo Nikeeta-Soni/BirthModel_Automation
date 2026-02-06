@@ -1,8 +1,0 @@
-Navigate to the url - https://superadmin.stage.birthmodel.com/
-On the homescreen find the Login button and click on the button.
-In the email field enter the email- nikeetasoni151@gmail.com
-Click on the continue button
-Click on the next button
-In the password field provide the password - Qwerty@123
-Click on the next button
-Check if the login is successful. 

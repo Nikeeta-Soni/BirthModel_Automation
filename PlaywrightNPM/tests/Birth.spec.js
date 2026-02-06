@@ -6,7 +6,7 @@ test('Login to Birth Model with Hospital Credentials', async ({ page }) => {
   console.log('✅ Navigated to the Birth Model URL');
 
   // Click on "Login with Hospital Credentials" button
-  await page.getByRole('button', { name: /login with hospital credentials/i }).click();
+  await page.getByRole('button', { name: /Sign in with hospital credentials/i }).click();
   console.log('✅ Clicked on "Login with Hospital Credentials" button');
 
   // Wait for and fill email field

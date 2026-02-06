@@ -40,10 +40,12 @@ Click on the position dropdown and select the second option from thr listing
 Enter the BMI as 23
 Click on the races dropdown and select the third option from the listing
 Select the Prior Deliveried as 1
-On the Pregnancy dating clcik on the Estimated due date option and select the date as 30 january 2026
+On the Pregnancy dating clcik on the Gestationa Age option
+Click on th weeks text field and enter 37
+Clik on the days test field and enter 4
 Select the option No for Trail of Labor after Cesarean Delivery
-Click on the Assign Practice dropdown and select the first option from the listing
-Now go to the Assign Provider dropdown and select daisy from the listing
+Click on the Assign Practice dropdown and select the option Practice Admin from the listing
+Click on the Assign Provider dropdown and select daisy from the listing
 Noe click on the Add button at the bottom 
 Click on the Add button
 Wait for the submission to complete without validation errors

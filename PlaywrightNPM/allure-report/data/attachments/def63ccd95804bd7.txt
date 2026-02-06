@@ -1,7 +1,0 @@
-✅ Navigated to the Birth Model URL
-✅ Clicked on "Login with Hospital Credentials" button
-✅ Email entered: daisy1010@anishbirthmodel.onmicrosoft.com
-✅ Clicked Next button after email entry
-✅ Password entered: Azure@123
-✅ Clicked Next button after password entry
-✅ Login process completed

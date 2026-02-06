@@ -1,5 +1,0 @@
-✅ Navigated to superadmin URL
-✅ Clicked Login button
-✅ Email entered
-✅ Clicked Continue button
-✅ Clicked Next on email confirmation

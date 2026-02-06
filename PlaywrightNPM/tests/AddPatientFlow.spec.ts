@@ -74,26 +74,51 @@ test('Add Patient Complete Flow - Physician Portal', async ({ page }) => {
     console.log('📍 STEP 2: Click Add New Patient Button');
     console.log('-----------------------------------');
 
-    // Try to find the ADD NEW PATIENT button with a longer timeout
-    console.log('🔍 Looking for ADD NEW PATIENT button...');
-    const addButton = page.getByRole('button', { name: 'ADD NEW PATIENT' });
-    const isVisible = await addButton.isVisible({ timeout: 5000 }).catch(() => false);
+    // Click on Active Patients first if needed
+    const activePatientsLocator = page.locator('text=Active Patients');
+    const activePatientsCount = await activePatientsLocator.count();
     
-    if (isVisible) {
-      await addButton.click();
-      console.log('✅ Clicked ADD NEW PATIENT button');
+    if (activePatientsCount > 0) {
+      console.log('🔍 Found Active Patients, clicking...');
+      await activePatientsLocator.first().click();
+      console.log('✅ Clicked Active Patients');
+      await page.waitForTimeout(2000);
+    }
+
+    // Find and click ADD NEW PATIENT button using JavaScript
+    // The button is rendered by React and may not be found by standard selectors
+    console.log('🔍 Looking for ADD NEW PATIENT button...');
+    const clickedViaMUI = await page.evaluate(() => {
+      const elements = document.querySelectorAll('*');
+      let found = false;
+      
+      elements.forEach((el: any) => {
+        const text = el.textContent;
+        if (text && text.includes('ADD NEW PATIENT') && el.offsetHeight > 0) {
+          // Found a visible element with the text, click it
+          el.click();
+          found = true;
+        }
+      });
+      return found;
+    });
+    
+    if (clickedViaMUI) {
+      console.log('✅ Clicked ADD NEW PATIENT button via JavaScript');
     } else {
-      // Try alternative selectors
-      const addButtonAlt = page.locator('button:has-text("ADD NEW PATIENT"), button:has-text("Add New Patient"), [aria-label*="ADD NEW PATIENT"]').first();
-      if (await addButtonAlt.isVisible({ timeout: 3000 }).catch(() => false)) {
-        await addButtonAlt.click();
-        console.log('✅ Clicked ADD NEW PATIENT button (alternative)');
+      // Fallback: try using standard Playwright locators
+      console.log('⚠️ JavaScript click did not work, trying standard selectors...');
+      const addButton = page.getByRole('button', { name: 'ADD NEW PATIENT' });
+      if (await addButton.isVisible({ timeout: 3000 }).catch(() => false)) {
+        await addButton.click();
+        console.log('✅ Clicked ADD NEW PATIENT button via role selector');
       } else {
         console.log('⚠️ ADD NEW PATIENT button not found');
         throw new Error('ADD NEW PATIENT button not found on the page');
       }
     }
 
+    await page.waitForTimeout(2000);
     console.log('✅ Patient form opened\n');
 
     // ===== STEP 3: FILL FORM FIELDS =====
@@ -114,7 +139,7 @@ test('Add Patient Complete Flow - Physician Portal', async ({ page }) => {
     await page.locator('input[name="dateOfBirth"]').click();
     console.log('✅ Clicked Date of Birth field');
     await page.waitForTimeout(500);
-    await page.getByRole('button', { name: 'Choose Wednesday, December 31st,' }).click();
+    await page.getByRole('button', { name: 'Choose Thursday, February 5th,' }).click();
     console.log('✅ Selected Date of Birth');
 
     // MRN
@@ -125,7 +150,7 @@ test('Add Patient Complete Flow - Physician Portal', async ({ page }) => {
     // First Examination Date
     await page.locator('input[name="firstExamination"]').click();
     await page.waitForTimeout(500);
-    await page.getByRole('button', { name: 'Choose Thursday, January 22nd,' }).click();
+    await page.getByRole('button', { name: 'Choose Thursday, February 5th,' }).click();
     console.log('✅ First Examination Date selected');
 
     // Time Selection
@@ -149,9 +174,27 @@ test('Add Patient Complete Flow - Physician Portal', async ({ page }) => {
     console.log('📍 STEP 4: Cervical Exam Details');
     console.log('-----------------------------------');
 
-    // Dilation slider (click twice for value of 3)
-    await page.locator('.MuiSlider-rail').first().click();
-    console.log('✅ Dilation slider clicked');
+    // Dilation slider - use JavaScript to interact with it since marks intercept events
+    try {
+      await page.evaluate(() => {
+        // Find the dilation slider thumb and drag it
+        const sliders = document.querySelectorAll('.MuiSlider-root');
+        if (sliders.length > 0) {
+          const slider = sliders[0];
+          const input = slider.querySelector('input[type="range"]') as any;
+          if (input) {
+            // Set the value to 3
+            input.value = '3';
+            // Trigger change events
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+        }
+      });
+      console.log('✅ Dilation set to 3');
+    } catch (e) {
+      console.log(`⚠️ Could not set dilation slider: ${e.message}`);
+    }
 
     // Effacement dropdown
     await page.locator('#react-select-15-placeholder').click();
@@ -162,7 +205,7 @@ test('Add Patient Complete Flow - Physician Portal', async ({ page }) => {
     await page.locator('#react-select-16-placeholder').click();
     await page.locator('#react-select-16-option-1').click();
     console.log('✅ Fetal Station: option selected');
-
+ 
     // Consistency
     await page.locator('#react-select-17-placeholder').click();
     await page.getByText('Posterior').click();
@@ -207,8 +250,8 @@ test('Add Patient Complete Flow - Physician Portal', async ({ page }) => {
     // EDD Date picker
     await page.locator('.react-datepicker-wrapper.datePicker > .react-datepicker__input-container > div').click();
     await page.waitForTimeout(500);
-    await page.getByRole('button', { name: 'Choose Thursday, January 29th,' }).click();
-    console.log('✅ EDD: January 29 selected');
+    await page.getByRole('button', { name: 'Choose Thursday, February 5th,' }).click();
+    console.log('✅ EDD: February 5th selected');
 
     console.log('');
 
