@@ -1,17 +1,46 @@
 import { test, expect } from '@playwright/test';
 
-test('test', async ({ page }) => {
-  await page.goto('https://physician.stage.birthmodel.com/');
-  await page.getByText('Sign in Sign in with hospital').click();
-  await page.getByRole('button', { name: 'Sign in with hospital' }).click();
-  await page.getByRole('textbox', { name: 'Enter your email or phone' }).click();
-  await page.getByRole('textbox', { name: 'Enter your email or phone' }).fill('daisy1010@testdirectory007.onmicrosoft.com');
-  await page.getByRole('button', { name: 'Next' }).click();
-  await page.getByRole('textbox', { name: 'Enter the password for' }).click();
-  await page.getByRole('textbox', { name: 'Enter the password for' }).fill('Azure@123');
-  await page.getByRole('button', { name: 'Sign in' }).click();
-  await page.getByRole('button', { name: 'Yes' }).click();
-  await page.getByText('Active Patients').click();
+test('Birth Model Login Flow', async ({ page }) => {
+
+  try {
+    console.log('\n========================================');
+    console.log('BIRTH MODEL LOGIN TEST - STARTED');
+    console.log('========================================\n');
+
+    // Step 1: Navigate to the physician portal
+    await page.goto('https://physician.stage.birthmodel.com/', { waitUntil: 'networkidle' });
+
+    // Step 2: Click ONLY the upper SSO button
+    const ssoButton = page.locator('button', {
+      hasText: 'Sign in with hospital credentials'
+    });
+
+    await expect(ssoButton).toBeVisible({ timeout: 15000 });
+    await ssoButton.first().click();
+
+    // Step 3: Email
+    await page.waitForSelector('#i0116', { timeout: 15000 });
+    await page.locator('#i0116').fill('daisy1010@testdirectory007.onmicrosoft.com');
+    await page.getByRole('button', { name: 'Next' }).click();
+
+    // Step 4: Password
+    await page.waitForSelector('#i0118', { timeout: 15000 });
+    await page.locator('#i0118').fill('Azure@123');
+    await page.getByRole('button', { name: 'Sign in' }).click();
+
+    // Step 5: Stay signed in - wait for the Yes button and click it
+    const yesBtn = page.getByRole('button', { name: 'Yes' });
+    await expect(yesBtn).toBeVisible({ timeout: 15000 });
+    await yesBtn.click();
+
+    // Wait for dashboard to load after login
+    await page.waitForURL('**/dashboard', { timeout: 30000 });
+    await page.waitForTimeout(2000);
+
+    // Click Active Patients in the sidebar navigation
+    const activePatientsLink = page.getByText('Active Patients', { exact: true });
+    await expect(activePatientsLink).toBeVisible({ timeout: 15000 });
+    await activePatientsLink.click();
   await page.getByText('Pos Asd').click();
   await page.getByText('Intrapartum Management').click();
   await page.getByRole('button', { name: 'Add Intrapartum Updates' }).click();
@@ -152,5 +181,8 @@ test('test', async ({ page }) => {
     }
   } catch (e) {
     console.log(`⚠️ Error during cervical exam section: ${e.message}`);
+  } } catch (error) {
+    console.error('\n❌ TEST FAILED:', error);
+    throw error;
   }
 });

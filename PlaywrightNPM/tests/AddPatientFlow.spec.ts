@@ -1,89 +1,46 @@
 import { test, expect } from '@playwright/test';
 
-test('Add Patient Complete Flow - Physician Portal', async ({ page }) => {
-  page.setDefaultTimeout(120000);
-  
-  console.log('\n========================================');
-  console.log('ADD PATIENT FLOW - EXECUTION STARTED');
-  console.log('========================================\n');
+test('Birth Model - Login Flow', async ({ page }) => {
 
   try {
-    // ===== STEP 1: NAVIGATE AND LOGIN =====
-    console.log('📍 STEP 1: Physician Portal Login');
-    console.log('-----------------------------------');
-    
-    // Navigate to physician login page
-    await page.goto('https://physician.stage.birthmodel.com/', { waitUntil: 'domcontentloaded' });
-    console.log('✅ Navigated to physician.stage.birthmodel.com');
+    console.log('\n========================================');
+    console.log('BIRTH MODEL LOGIN TEST - STARTED');
+    console.log('========================================\n');
 
-    // Wait for Auth0 redirect
-    await page.waitForTimeout(2000);
+    // Step 1: Navigate to the physician portal
+    await page.goto('https://physician.stage.birthmodel.com/', { waitUntil: 'networkidle' });
 
-    // Click Sign in with hospital credentials button (Auth0 page)
-    const hospitalButton = page.locator('text=Sign in with hospital credentials');
-    if (await hospitalButton.isVisible({ timeout: 5000 }).catch(() => false)) {
-      await hospitalButton.click();
-      console.log('✅ Clicked Sign in with hospital credentials button');
-    } else {
-      // Fallback to getByRole if text selector doesn't work
-      await page.getByRole('button', { name: 'Sign in with hospital credentials' }).click();
-      console.log('✅ Clicked Sign in with hospital credentials button (role)');
-    }
-
-    // Fill email - exact selector from original
-    await page.getByRole('textbox', { name: 'Enter your email or phone' }).fill('daisy1010@testdirectory007.onmicrosoft.com');
-    console.log('✅ Entered email: daisy1010@testdirectory007.onmicrosoft.com');
-
-    // Click Next
-    await page.getByRole('button', { name: 'Next' }).click();
-    console.log('✅ Clicked Next on email screen');
-
-    // Fill password
-    await page.waitForTimeout(2000);
-    await page.locator('#i0118').fill('Azure@123');
-    console.log('✅ Entered password: Azure@123');
-
-    // Click Sign in
-    await page.getByRole('button', { name: 'Sign in' }).click();
-    console.log('✅ Clicked Sign in button');
-
-    // Click Yes button
-    await page.waitForTimeout(2000);
-    await page.getByRole('button', { name: 'Yes' }).click();
-    console.log('✅ Clicked Yes button for permissions');
-
-    // Wait for dashboard
-    await page.waitForLoadState('networkidle', { timeout: 20000 }).catch(() => {
-      console.log('ℹ️ Network idle timeout');
+    // Step 2: Click ONLY the upper SSO button
+    const ssoButton = page.locator('button', {
+      hasText: 'Sign in with hospital credentials'
     });
-    await page.waitForTimeout(3000);
 
-    const currentURL = page.url();
-    console.log(`📍 Current URL: ${currentURL}`);
-    
-    // Navigate to dashboard if not already there
-    if (!currentURL.includes('dashboard')) {
-      console.log('ℹ️ Not on dashboard, navigating there');
-      await page.goto('https://physician.stage.birthmodel.com/dashboard', { waitUntil: 'networkidle' });
-      await page.waitForTimeout(3000);
-    }
-    
-    console.log('✅ Login completed\n');
+    await expect(ssoButton).toBeVisible({ timeout: 15000 });
+    await ssoButton.first().click();
 
-    // ===== STEP 2: NAVIGATE TO ACTIVE PATIENTS =====
-    console.log('📍 STEP 2: Click Add New Patient Button');
-    console.log('-----------------------------------');
+    // Step 3: Email
+    await page.waitForSelector('#i0116', { timeout: 15000 });
+    await page.locator('#i0116').fill('daisy1010@testdirectory007.onmicrosoft.com');
+    await page.getByRole('button', { name: 'Next' }).click();
 
-    // Click on Active Patients first if needed
-    const activePatientsLocator = page.locator('text=Active Patients');
-    const activePatientsCount = await activePatientsLocator.count();
-    
-    if (activePatientsCount > 0) {
-      console.log('🔍 Found Active Patients, clicking...');
-      await activePatientsLocator.first().click();
-      console.log('✅ Clicked Active Patients');
-      await page.waitForTimeout(2000);
-    }
+    // Step 4: Password
+    await page.waitForSelector('#i0118', { timeout: 15000 });
+    await page.locator('#i0118').fill('Azure@123');
+    await page.getByRole('button', { name: 'Sign in' }).click();
+
+    // Step 5: Stay signed in - wait for the Yes button and click it
+    const yesBtn = page.getByRole('button', { name: 'Yes' });
+    await expect(yesBtn).toBeVisible({ timeout: 15000 });
+    await yesBtn.click();
+
+    // Wait for dashboard to load after login
+    await page.waitForURL('**/dashboard', { timeout: 30000 });
+    await page.waitForTimeout(2000);
+
+    // Click Active Patients in the sidebar navigation
+    const activePatientsLink = page.getByText('Active Patients', { exact: true });
+    await expect(activePatientsLink).toBeVisible({ timeout: 15000 });
+    await activePatientsLink.click();
 
     // Find and click ADD NEW PATIENT button using JavaScript
     // The button is rendered by React and may not be found by standard selectors

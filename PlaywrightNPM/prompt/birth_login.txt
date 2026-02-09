@@ -1,7 +1,11 @@
-Navigates to https://physician.stage.birthmodel.com/
-Clicks the "Login with Hospital Creds" button
-Fills the email field with daisy1010@testdirectory007.onmicrosoft.com
-Clicks the Next button
-Fills the password field with Azure@123
-Clicks the Next button again
-Click on Yes button
+Navigate to https://physician.stage.birthmodel.com/ and wait until the page is fully loaded and stable.
+Identify and click only the upper SSO button whose exact visible text is
+“Sign in with hospital credentials” (the button displayed above the Email and Password fields and containing the Epic logo).
+Do not click the lower “Sign in” form submit button under any circumstance.
+After clicking the “Sign in with hospital credentials” button, wait for the authentication redirect page to load completely.
+On the redirected login page, locate the Email input field and enter
+daisy1010@testdirectory007.onmicrosoft.com.
+Click the Next button and wait for the password screen to appear.
+Locate the Password input field, enter Azure@123, and click the Next button again.
+If a “Stay signed in?” confirmation appears, click Yes.
+Wait until the application successfully redirects to the dashboard page.
