@@ -59,6 +59,7 @@ export class BrandsPage {
    * @returns {Promise<number>}
    */
   async getProductCount() {
+    await expect(this.page.locator('.product-image-wrapper').first()).toBeVisible();
     const count = await this.page.locator('.product-image-wrapper').count();
     console.log(`Products found on brand page: ${count}`);
     return count;

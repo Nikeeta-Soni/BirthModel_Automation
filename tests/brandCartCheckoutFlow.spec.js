@@ -7,7 +7,7 @@ import { CheckoutPage } from '../pages/CheckoutPage.js';
 import { PaymentPage } from '../pages/PaymentPage.js';
 import { SignupLoginPage } from '../pages/SignupLoginPage.js';
 import { AccountInfoPage } from '../pages/AccountInfoPage.js';
-import { TEST_USER } from '../utils/testDataHelper.js';
+import { TEST_USER, generateUniqueEmail } from '../utils/testDataHelper.js';
 
 test('Brand browse → Add to cart → Checkout → Register', async ({ page }) => {
   const homePage      = new HomePage(page);
@@ -17,6 +17,7 @@ test('Brand browse → Add to cart → Checkout → Register', async ({ page }) 
   const paymentPage   = new PaymentPage(page);
   const signupPage    = new SignupLoginPage(page);
   const accountPage   = new AccountInfoPage(page);
+  const testUser = { ...TEST_USER, email: generateUniqueEmail('mathew') };
 
   // ── Step 1: Navigate to homepage ─────────────────────────────────────────
   await homePage.goto();
@@ -27,6 +28,7 @@ test('Brand browse → Add to cart → Checkout → Register', async ({ page }) 
 
   // ── Step 3: Click MAST & HARBOUR brand ───────────────────────────────────
   await brandsPage.clickBrand('MAST & HARBOUR');
+  await expect(page).toHaveURL(/brand_products/);
   await brandsPage.dismissPopupIfPresent();
 
   // ── Step 4 & 5: Count and log the number of MAST & HARBOUR products ──────
@@ -68,7 +70,7 @@ test('Brand browse → Add to cart → Checkout → Register', async ({ page }) 
   await signupPage.verifyNewUserSignupVisible();
 
   // Step 16: Fill signup form with TEST_USER data
-  await signupPage.fillSignupForm(TEST_USER.name, TEST_USER.email);
+  await signupPage.fillSignupForm(testUser.name, testUser.email);
   await signupPage.clickSignup();
 
   // Step 17: Verify "ENTER ACCOUNT INFORMATION" heading
@@ -77,7 +79,7 @@ test('Brand browse → Add to cart → Checkout → Register', async ({ page }) 
   // Step 18: Fill the complete account information form
   await accountPage.selectTitleMr();
   await accountPage.verifyNamePrefilled(TEST_USER.name);
-  await accountPage.verifyEmailPrefilled(TEST_USER.email);
+  await accountPage.verifyEmailPrefilled(testUser.email);
   await accountPage.enterPassword(TEST_USER.password);
   await accountPage.setDateOfBirth(TEST_USER.dob.day, TEST_USER.dob.month, TEST_USER.dob.year);
   await accountPage.checkNewsletter();
