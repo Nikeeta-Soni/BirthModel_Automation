@@ -29,7 +29,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Run tests in headed mode to launch visible Chrome browser */
-    headless: false,
+    headless: true,
     /* Slow down by 500ms so actions are visible */
     launchOptions: {
       slowMo: 500,

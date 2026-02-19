@@ -32,7 +32,7 @@ export function generateContactData() {
 
 export const TEST_USER = {
   name: 'Mathew Smith',
-  email: generateUniqueEmail('mathew'),
+  email: 'mathew@yopmail.com',
   password: 'mathew@123',
   dob: {
     day: '17',

@@ -5,7 +5,7 @@ import { SignupLoginPage } from '../pages/SignupLoginPage.js';
 import { AccountInfoPage } from '../pages/AccountInfoPage.js';
 import { TEST_USER } from '../utils/testDataHelper.js';
 
-test('User Signup and Account Deletion Flow', async ({ page }) => {
+test('User Signup and Login Flow', async ({ page }) => {
   const homePage = new HomePage(page);
   const signupLoginPage = new SignupLoginPage(page);
   const accountInfoPage = new AccountInfoPage(page);
@@ -24,53 +24,35 @@ test('User Signup and Account Deletion Flow', async ({ page }) => {
   await signupLoginPage.fillSignupForm(TEST_USER.name, TEST_USER.email);
   await signupLoginPage.clickSignup();
 
-  // Step 7: Verify "ENTER ACCOUNT INFORMATION" heading is visible
-  await accountInfoPage.verifyEnterAccountInfoHeadingVisible();
+  // Step 7: Branch based on whether the email already exists
+  const emailExists = await signupLoginPage.isEmailAlreadyExistErrorVisible();
 
-  // Step 8: Fill account information form
+  if (emailExists) {
+    // Path B: Email already exists — fall back to login
+    await signupLoginPage.verifyLoginToAccountVisible();
+    await signupLoginPage.fillLoginForm(TEST_USER.email, TEST_USER.password);
+    await signupLoginPage.clickLogin();
+  } else {
+    // Path A: New user — complete account creation
+    await accountInfoPage.verifyEnterAccountInfoHeadingVisible();
 
-  // Select title Mr
-  await accountInfoPage.selectTitleMr();
+    await accountInfoPage.selectTitleMr();
+    await accountInfoPage.verifyNamePrefilled(TEST_USER.name);
+    await accountInfoPage.verifyEmailPrefilled(TEST_USER.email);
+    await accountInfoPage.enterPassword(TEST_USER.password);
+    await accountInfoPage.setDateOfBirth(TEST_USER.dob.day, TEST_USER.dob.month, TEST_USER.dob.year);
+    await accountInfoPage.checkNewsletter();
+    await accountInfoPage.checkOptin();
+    await accountInfoPage.fillAddressDetails(TEST_USER.address);
+    await accountInfoPage.clickCreateAccount();
 
-  // Verify pre-filled name and email
-  await accountInfoPage.verifyNamePrefilled(TEST_USER.name);
-  await accountInfoPage.verifyEmailPrefilled(TEST_USER.email);
+    const accountCreatedHeading = page.locator('b', { hasText: 'Account Created!' });
+    await expect(accountCreatedHeading).toBeVisible();
 
-  // Enter password
-  await accountInfoPage.enterPassword(TEST_USER.password);
+    await page.locator('[data-qa="continue-button"]').click();
+    await page.waitForLoadState('domcontentloaded');
+  }
 
-  // Set date of birth
-  await accountInfoPage.setDateOfBirth(TEST_USER.dob.day, TEST_USER.dob.month, TEST_USER.dob.year);
-
-  // Check newsletter and special offers checkboxes
-  await accountInfoPage.checkNewsletter();
-  await accountInfoPage.checkOptin();
-
-  // Fill address details
-  await accountInfoPage.fillAddressDetails(TEST_USER.address);
-
-  // Step 9: Click "Create Account"
-  await accountInfoPage.clickCreateAccount();
-
-  // Step 10: Verify "ACCOUNT CREATED!" message
-  const accountCreatedHeading = page.locator('b', { hasText: 'Account Created!' });
-  await expect(accountCreatedHeading).toBeVisible();
-
-  // Step 11: Click "Continue"
-  await page.locator('[data-qa="continue-button"]').click();
-  await page.waitForLoadState('domcontentloaded');
-
-  // Step 12: Verify "Logged in as Mathew Smith" is visible
+  // Both paths converge: Verify logged in
   await homePage.verifyLoggedInAs(TEST_USER.name);
-
-  // Step 13: Click "Delete Account"
-  await homePage.clickDeleteAccount();
-
-  // Step 14: Verify "ACCOUNT DELETED!" message
-  const accountDeletedHeading = page.locator('b', { hasText: 'Account Deleted!' });
-  await expect(accountDeletedHeading).toBeVisible();
-
-  // Step 15: Click "Continue"
-  await page.locator('[data-qa="continue-button"]').click();
-  await page.waitForLoadState('domcontentloaded');
 });

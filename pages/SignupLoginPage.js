@@ -11,6 +11,13 @@ export class SignupLoginPage {
     this.signupNameInput = page.locator('[data-qa="signup-name"]');
     this.signupEmailInput = page.locator('[data-qa="signup-email"]');
     this.signupButton = page.locator('[data-qa="signup-button"]');
+
+    // Login form locators
+    this.loginToAccountHeading = page.getByRole('heading', { name: 'Login to your account' });
+    this.loginEmailInput = page.locator('[data-qa="login-email"]');
+    this.loginPasswordInput = page.locator('[data-qa="login-password"]');
+    this.loginButton = page.locator('[data-qa="login-button"]');
+    this.emailAlreadyExistError = page.locator('p', { hasText: 'Email Address already exist!' });
   }
 
   async verifyNewUserSignupVisible() {
@@ -28,6 +35,33 @@ export class SignupLoginPage {
   async clickSignup() {
     await expect(this.signupButton).toBeVisible();
     await this.signupButton.click();
+    await this.page.waitForLoadState('domcontentloaded');
+  }
+
+  async isEmailAlreadyExistErrorVisible() {
+    try {
+      await expect(this.emailAlreadyExistError).toBeVisible({ timeout: 5000 });
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  async verifyLoginToAccountVisible() {
+    await expect(this.loginToAccountHeading).toBeVisible();
+  }
+
+  async fillLoginForm(email, password) {
+    await expect(this.loginEmailInput).toBeVisible();
+    await this.loginEmailInput.fill(email);
+
+    await expect(this.loginPasswordInput).toBeVisible();
+    await this.loginPasswordInput.fill(password);
+  }
+
+  async clickLogin() {
+    await expect(this.loginButton).toBeVisible();
+    await this.loginButton.click();
     await this.page.waitForLoadState('domcontentloaded');
   }
 }
